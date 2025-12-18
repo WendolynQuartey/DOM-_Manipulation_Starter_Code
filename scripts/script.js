@@ -65,12 +65,36 @@ function handleClick(event) {
   // console.log("testing!");
   // console.log(event.target.tagName);
   console.log(event.target.textContent);
+  // if (event.target.classList.contains('active')){
+  //   event.target.classList.remove('active');
+  //   subMenuEl.style.top = '0';
+  //   return;
+  // }
   for (let i = 0; i < topMenuLinks.length; i++) {
     topMenuLinks[i].classList.remove('active');
   }
-  
-  event.target.classList.add('active');
 
-  // event.target.classList.remove('active');
+  event.target.classList.add('active');
+  for (let i = 0; i < menuLinks.length; i++) {
+    if (event.target.textContent == menuLinks[i].text) {
+      let currTarget = menuLinks[i];
+      if ('subLinks' in currTarget) {
+        subMenuEl.style.top = '100%';
+      } else {
+        subMenuEl.style.top = '0';
+      }
+    }
+  }
+
 }
+
+// function buildSubmenu(subLinks) {
+//   subMenuEl.textContent = "";
+//   for(let i of subLinks){
+//     let subMenuA = document.createElement('a');
+//     subMenuA.getAttribute(i.href);
+//     subMenuA.textContent = i.text;
+//     subMenuEl.appendChild(a);
+//   }
+// }
 
