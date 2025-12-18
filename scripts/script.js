@@ -56,20 +56,17 @@ subMenuEl.style.top = '0';
 
 let topMenuLinks = topMenuEl.querySelectorAll('a');
 // console.log(topMenuLinks.textContent);
-topMenuEl.addEventListener('click', handleClick);
+topMenuEl.addEventListener('click', handleMainClick);
+subMenuEl.addEventListener('click', handleSubClick);
 
-function handleClick(event) {
+function handleMainClick(event) {
   event.preventDefault();
   // console.log(event.target.tagName);
   if (event.target.tagName !== 'A') return;
   // console.log("testing!");
   // console.log(event.target.tagName);
   console.log(event.target.textContent);
-  // if (event.target.classList.contains('active')){
-  //   event.target.classList.remove('active');
-  //   subMenuEl.style.top = '0';
-  //   return;
-  // }
+ 
   for (let i = 0; i < topMenuLinks.length; i++) {
     topMenuLinks[i].classList.remove('active');
   }
@@ -86,7 +83,20 @@ function handleClick(event) {
       }
     }
   }
+  if (event.target.textContent == 'about') {
+     mainEl.innerHTML = `<h1>About</h1>`;
+  }
+}
 
+function handleSubClick(event) {
+  event.preventDefault();
+  if (event.target.tagName !== 'A') return;
+  console.log(event.target.textContent);
+  subMenuEl.style.top = '0';
+  for (let i = 0; i < topMenuLinks.length; i++) {
+    topMenuLinks[i].classList.remove('active');
+  }
+  mainEl.innerHTML = `<h1>${event.target.textContent}</h1>`;
 }
 
 function buildSubmenu(subLinks) {
