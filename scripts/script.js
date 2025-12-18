@@ -80,6 +80,7 @@ function handleClick(event) {
       let currTarget = menuLinks[i];
       if ('subLinks' in currTarget) {
         subMenuEl.style.top = '100%';
+        buildSubmenu(currTarget.subLinks);
       } else {
         subMenuEl.style.top = '0';
       }
@@ -88,13 +89,13 @@ function handleClick(event) {
 
 }
 
-// function buildSubmenu(subLinks) {
-//   subMenuEl.textContent = "";
-//   for(let i of subLinks){
-//     let subMenuA = document.createElement('a');
-//     subMenuA.getAttribute(i.href);
-//     subMenuA.textContent = i.text;
-//     subMenuEl.appendChild(a);
-//   }
-// }
+function buildSubmenu(subLinks) {
+  subMenuEl.textContent = "";
+  for(let i of subLinks){
+    let subMenuA = document.createElement('a');
+    subMenuA.getAttribute(i.href);
+    subMenuA.textContent = i.text;
+    subMenuEl.appendChild(subMenuA);
+  }
+}
 
